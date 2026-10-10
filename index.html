@@ -2,103 +2,128 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
   <title>Sinal Vexa — Smart Forex Signals & Algorithmic Trading</title>
   <meta name="description" content="Sinal Vexa combines trading algorithms, market analysis, and automation to deliver cost-effective Forex signals via Telegram." />
-  <meta property="og:title" content="Sinal Vexa 🚀 — Smart Forex Signals" />
+  <meta property="og:title" content="Sinal Vexa — Smart Forex Signals" />
   <meta property="og:description" content="Algorithmic Intelligence for the Forex Market. Signals and updates delivered via Telegram." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sinalvexa.github.io/" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%80%3C/text%3E%3C/svg%3E" />
+  <meta property="og:image" content="https://sinalvexa.github.io/assets/logo-512.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="https://sinalvexa.github.io/assets/logo-512.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/logo-64.png" />
+  <link rel="apple-touch-icon" href="assets/logo-256.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
+    /* ============================================================
+       PALETA OFICIAL — 60/25/10/5
+       60% preto  : fundos e interface      (--bg, --surface, --card)
+       25% azul   : logo, botões, elementos (--blue, --blue-2, --blue-strong)
+       10% ciano  : brilhos, gradientes     (--cyan, --cyan-2)
+        5% branco : textos e legibilidade   (--text, --muted, --line)
+       ============================================================ */
     :root{
-      --bg:#070b12; --bg-2:#0a101b; --surface:#0d1524; --card:#0f1828;
-      --line:rgba(148,163,184,.13); --text:#e9eef7; --muted:#8b98ab;
-      --green:#22c55e; --green-2:#10b981; --green-strong:#059669; --gold:#f5b942;
+      --bg:#000000; --bg-2:#02050b; --surface:#050a13; --card:#070d18;
+      --line:rgba(255,255,255,.10);
+      --text:#ffffff; --muted:rgba(255,255,255,.60);
+      --blue:#0a6cff; --blue-2:#1e90ff; --blue-strong:#0050e6;
+      --cyan:#33ccff; --cyan-2:#7ae0ff;
       --radius:18px; --maxw:1160px;
       --ease:cubic-bezier(.2,.7,.2,1);
     }
-    *{box-sizing:border-box;margin:0;padding:0}
+    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
     html{scroll-behavior:smooth}
     body{
       background:var(--bg); color:var(--text); line-height:1.6;
       font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-      -webkit-font-smoothing:antialiased; overflow-x:hidden;
+      -webkit-font-smoothing:antialiased; overflow-x:hidden; overflow-x:clip;
     }
-    h1,h2,h3,.display{font-family:'Space Grotesk',var(--sans);letter-spacing:-.5px}
+    h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;letter-spacing:-.5px}
     .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
     img,svg{display:block}
     a{color:inherit}
+    ::selection{background:var(--blue);color:#fff}
+    :focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+    section{scroll-margin-top:86px}
 
-    /* ambient background */
+    /* ambient background (preto + brilhos azul/ciano) */
     .bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-    .bg .grid{position:absolute;inset:0;opacity:.5;
+    .bg .grid{position:absolute;inset:0;opacity:.45;
       background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
       background-size:56px 56px;
       mask-image:radial-gradient(900px 500px at 50% 0%,#000 30%,transparent 80%);
       -webkit-mask-image:radial-gradient(900px 500px at 50% 0%,#000 30%,transparent 80%);
     }
-    .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;animation:drift 18s ease-in-out infinite alternate}
-    .orb.a{width:520px;height:520px;top:-180px;left:-120px;background:radial-gradient(circle,rgba(34,197,94,.22),transparent 70%)}
-    .orb.b{width:460px;height:460px;top:120px;right:-140px;background:radial-gradient(circle,rgba(245,185,66,.14),transparent 70%);animation-delay:-6s}
+    .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;animation:drift 18s ease-in-out infinite alternate}
+    .orb.a{width:520px;height:520px;top:-180px;left:-120px;background:radial-gradient(circle,rgba(10,108,255,.26),transparent 70%)}
+    .orb.b{width:460px;height:460px;top:120px;right:-140px;background:radial-gradient(circle,rgba(51,204,255,.14),transparent 70%);animation-delay:-6s}
     @keyframes drift{from{transform:translate(0,0)}to{transform:translate(40px,30px)}}
 
     /* Nav */
     nav{position:sticky;top:0;z-index:60;transition:background .3s,box-shadow .3s,border-color .3s;border-bottom:1px solid transparent}
-    nav.scrolled{background:rgba(7,11,18,.82);backdrop-filter:saturate(150%) blur(12px);
-      border-bottom:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    nav.scrolled{background:rgba(0,0,0,.82);backdrop-filter:saturate(150%) blur(12px);
+      border-bottom:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.5)}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
-    .brand{display:flex;align-items:center;gap:11px;font-weight:700;font-family:'Space Grotesk';letter-spacing:.3px;font-size:17px}
-    .brand .logo{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:17px;
-      background:linear-gradient(135deg,var(--green),var(--green-strong));box-shadow:0 6px 18px rgba(16,185,129,.35)}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-family:'Space Grotesk';letter-spacing:.3px;font-size:17px}
+    .brand .logo{width:38px;height:38px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px var(--line),0 6px 18px rgba(10,108,255,.35)}
     .nav-links{display:flex;align-items:center;gap:4px}
-    .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:8px 13px;border-radius:9px;transition:color .2s,background .2s;position:relative}
-    .nav-links a:hover{color:var(--text)}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:9px 13px;border-radius:9px;transition:color .2s,background .2s;position:relative}
+    .nav-links a:hover{color:var(--text);background:rgba(255,255,255,.05)}
     .nav-links a.active{color:var(--text)}
-    .nav-links a.active::after{content:'';position:absolute;left:13px;right:13px;bottom:2px;height:2px;border-radius:2px;background:var(--green)}
+    .nav-links a.active::after{content:'';position:absolute;left:13px;right:13px;bottom:3px;height:2px;border-radius:2px;background:var(--cyan)}
     .nav-cta{margin-left:8px}
-    @media(max-width:860px){.nav-links a:not(.nav-cta){display:none}}
 
-    /* Buttons */
-    .btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:13px;
-      font-weight:600;text-decoration:none;font-size:15px;overflow:hidden;transition:transform .18s var(--ease),box-shadow .18s,background .2s}
+    /* hambúrguer (mobile) */
+    .menu-btn{display:none;place-items:center;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);
+      background:rgba(255,255,255,.03);cursor:pointer;flex-direction:column;gap:5px}
+    .menu-btn span{display:block;width:20px;height:2px;border-radius:2px;background:var(--text);transition:transform .3s var(--ease),opacity .2s}
+    .menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .menu-btn.open span:nth-child(2){opacity:0}
+    .menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+    /* Buttons (25% azul elétrico + brilho ciano) */
+    .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:13px;
+      font-weight:600;text-decoration:none;font-size:15px;overflow:hidden;transition:transform .18s var(--ease),box-shadow .18s,background .2s;min-height:48px}
     .btn:active{transform:translateY(1px) scale(.99)}
-    .btn-primary{background:linear-gradient(135deg,var(--green),var(--green-strong));color:#04150c;box-shadow:0 10px 26px rgba(16,185,129,.3)}
-    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(16,185,129,.42)}
+    .btn-primary{background:linear-gradient(135deg,var(--blue-2),var(--blue-strong));color:#fff;box-shadow:0 10px 26px rgba(10,108,255,.35)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(10,108,255,.5),0 0 24px rgba(51,204,255,.25)}
     .btn-primary::after{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;transform:skewX(-20deg);
       background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transition:left .6s ease}
     .btn-primary:hover::after{left:130%}
     .btn-ghost{color:var(--text);border:1px solid var(--line);background:rgba(255,255,255,.02)}
-    .btn-ghost:hover{background:#131c2c;transform:translateY(-2px)}
+    .btn-ghost:hover{background:rgba(10,108,255,.10);border-color:rgba(10,108,255,.45);transform:translateY(-2px)}
     .soon{font-size:11px;opacity:.75;font-weight:500}
 
     /* Hero */
-    header{position:relative;padding:88px 0 56px}
+    header{position:relative;padding:72px 0 56px}
     .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-    @media(max-width:920px){.hero{grid-template-columns:1fr;gap:44px}}
-    .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:13px;color:#a7f3c6;
-      border:1px solid rgba(34,197,94,.35);background:rgba(34,197,94,.08);padding:7px 15px;border-radius:999px;font-weight:600}
-    .pulse{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(34,197,94,.55);animation:pulse 2.2s infinite}
-    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}70%{box-shadow:0 0 0 11px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
-    h1{font-size:clamp(44px,6.4vw,76px);line-height:1.02;font-weight:700;margin:22px 0 18px}
-    h1 .grad{background:linear-gradient(92deg,var(--green) 10%,#4ade80 45%,var(--gold));
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:13px;color:var(--cyan-2);
+      border:1px solid rgba(51,204,255,.35);background:rgba(10,108,255,.10);padding:7px 15px;border-radius:999px;font-weight:600}
+    .pulse{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 0 rgba(51,204,255,.55);animation:pulse 2.2s infinite}
+    @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(51,204,255,.5)}70%{box-shadow:0 0 0 11px rgba(51,204,255,0)}100%{box-shadow:0 0 0 0 rgba(51,204,255,0)}}
+    h1{font-size:clamp(42px,6.4vw,76px);line-height:1.02;font-weight:700;margin:22px 0 18px}
+    h1 .grad{background:linear-gradient(92deg,var(--blue-2) 10%,var(--cyan) 55%,var(--cyan-2));
       -webkit-background-clip:text;background-clip:text;color:transparent}
     .tagline{color:var(--muted);font-size:clamp(16px,2.2vw,19px);max-width:560px}
-    .cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+    .tagline strong{color:var(--text)}
+    .cta{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
     .hero-meta{margin-top:26px;display:flex;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:13px}
     .hero-meta span{display:inline-flex;align-items:center;gap:7px}
-    .hero-meta .dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+    .hero-meta .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan)}
 
     /* chart card */
-    .chart-card{position:relative;border:1px solid var(--line);border-radius:22px;background:linear-gradient(160deg,rgba(15,24,40,.9),rgba(10,16,27,.7));
-      padding:20px;box-shadow:0 30px 60px rgba(0,0,0,.4);transform-style:preserve-3d}
-    .chart-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+    .chart-card{position:relative;border:1px solid var(--line);border-radius:22px;background:linear-gradient(160deg,rgba(7,13,24,.92),rgba(2,5,11,.75));
+      padding:20px;box-shadow:0 30px 60px rgba(0,0,0,.55)}
+    .chart-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:10px;flex-wrap:wrap}
     .chip{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);border:1px solid var(--line);
       padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.02)}
-    .chip .live{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+    .chip .live{width:7px;height:7px;border-radius:50%;background:var(--cyan);animation:pulse 2s infinite}
     #chart{width:100%;height:250px;border-radius:14px}
     .chart-note{margin-top:10px;font-size:11px;color:var(--muted);opacity:.7;text-align:right}
 
@@ -109,55 +134,53 @@
     .ticker::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
     .ticker-track{display:flex;gap:56px;width:max-content;padding:14px 0;animation:tick 32s linear infinite}
     .tk{display:inline-flex;align-items:center;gap:9px;color:var(--muted);font-size:13px;font-weight:500;white-space:nowrap;font-family:'Space Grotesk'}
-    .tk i{width:6px;height:6px;border-radius:2px;background:linear-gradient(135deg,var(--green),var(--green-strong));transform:rotate(45deg)}
+    .tk i{width:6px;height:6px;border-radius:2px;background:linear-gradient(135deg,var(--cyan),var(--blue));transform:rotate(45deg)}
     @keyframes tick{to{transform:translateX(-50%)}}
     .ticker:hover .ticker-track{animation-play-state:paused}
 
     /* sections */
     section{padding:88px 0;position:relative}
-    .kicker{color:var(--green);font-weight:600;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px}
-    .kicker::before{content:'';width:26px;height:2px;background:var(--green);border-radius:2px}
+    .kicker{color:var(--cyan);font-weight:600;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px}
+    .kicker::before{content:'';width:26px;height:2px;background:var(--blue);border-radius:2px}
     h2{font-size:clamp(28px,4vw,42px);margin:12px 0 14px;font-weight:700}
     .lead{color:var(--muted);max-width:720px;font-size:16px}
 
     /* how it works */
-    .steps{margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative}
-    @media(max-width:820px){.steps{grid-template-columns:1fr}}
+    .steps{margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .step{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:transform .25s var(--ease),border-color .25s}
-    .step:hover{transform:translateY(-5px);border-color:rgba(34,197,94,.4)}
-    .step .num{font-family:'Space Grotesk';font-size:15px;font-weight:700;color:var(--green);letter-spacing:1px}
+    .step:hover{transform:translateY(-5px);border-color:rgba(10,108,255,.5)}
+    .step .num{font-family:'Space Grotesk';font-size:15px;font-weight:700;color:var(--cyan);letter-spacing:1px}
     .step h3{margin:14px 0 8px;font-size:18px}
     .step p{color:var(--muted);font-size:14px}
-    .step .bar{position:absolute;top:0;left:28px;width:44px;height:3px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,var(--green),transparent)}
+    .step .bar{position:absolute;top:0;left:28px;width:44px;height:3px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,var(--blue),transparent)}
 
     /* features */
     .grid{margin-top:52px;display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:18px}
     .card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;overflow:hidden;
       transition:transform .28s var(--ease),border-color .28s,box-shadow .28s}
-    .card:hover{transform:translateY(-6px);border-color:rgba(34,197,94,.45);box-shadow:0 24px 48px rgba(0,0,0,.35)}
+    .card:hover{transform:translateY(-6px);border-color:rgba(10,108,255,.55);box-shadow:0 24px 48px rgba(0,0,0,.45)}
     .card::before{content:'';position:absolute;inset:0;border-radius:inherit;opacity:0;transition:opacity .35s;pointer-events:none;
-      background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(34,197,94,.14),transparent 65%)}
+      background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(10,108,255,.16),transparent 65%)}
     .card:hover::before{opacity:1}
-    .card .icon{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;color:var(--green);margin-bottom:18px;
-      background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.2);transition:transform .3s var(--ease)}
+    .card .icon{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;color:var(--cyan);margin-bottom:18px;
+      background:rgba(10,108,255,.12);border:1px solid rgba(10,108,255,.28);transition:transform .3s var(--ease)}
     .card:hover .icon{transform:translateY(-3px) scale(1.04)}
     .card h3{font-size:16px;margin-bottom:6px}
     .card p{color:var(--muted);font-size:14px}
 
     /* mission */
     .mission{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
-    @media(max-width:860px){.mission{grid-template-columns:1fr}}
-    .panel{position:relative;border:1px solid rgba(34,197,94,.28);border-radius:20px;padding:34px;overflow:hidden;
-      background:linear-gradient(150deg,#0e2419,#0d1524 60%)}
+    .panel{position:relative;border:1px solid rgba(10,108,255,.35);border-radius:20px;padding:34px;overflow:hidden;
+      background:linear-gradient(150deg,#031028,#050a13 60%)}
     .panel::after{content:'';position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;
-      background:radial-gradient(circle,rgba(34,197,94,.18),transparent 70%)}
-    .panel p{color:#d6f0df;font-size:16px}
-    .panel strong{color:#86efac}
+      background:radial-gradient(circle,rgba(51,204,255,.16),transparent 70%)}
+    .panel p{color:rgba(255,255,255,.85);font-size:16px}
+    .panel strong{color:var(--cyan-2)}
 
-    /* disclaimer */
-    .disclaimer{background:rgba(245,185,66,.06);border:1px solid rgba(245,185,66,.3);border-left:4px solid var(--gold);
-      border-radius:14px;padding:22px 24px;color:#ecd9a6;font-size:14.5px;margin-top:28px}
-    .disclaimer b{color:var(--gold)}
+    /* disclaimer (mantido em-paleta: branco + ciano) */
+    .disclaimer{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.18);border-left:4px solid var(--cyan);
+      border-radius:14px;padding:22px 24px;color:rgba(255,255,255,.85);font-size:14.5px;margin-top:28px}
+    .disclaimer b{color:var(--text)}
 
     /* footer */
     footer{padding:56px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;background:rgba(255,255,255,.01)}
@@ -166,19 +189,45 @@
     .foot .cols{display:flex;gap:64px;flex-wrap:wrap}
     .foot h4{color:var(--text);font-size:13px;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
     .foot a{display:block;color:var(--muted);text-decoration:none;margin:7px 0;transition:color .2s}
-    .foot a:hover{color:var(--text)}
-    .fine{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:#6b7787;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .foot a:hover{color:var(--cyan-2)}
+    .fine{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:rgba(255,255,255,.42);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
     /* back to top */
-    #toTop{position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);
-      background:rgba(13,21,36,.9);color:var(--text);display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;
+    #toTop{position:fixed;right:max(22px, env(safe-area-inset-right));bottom:max(22px, env(safe-area-inset-bottom));width:46px;height:46px;border-radius:50%;
+      border:1px solid var(--line);background:rgba(5,10,19,.9);color:var(--text);display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;
       transition:opacity .3s,transform .3s,background .2s;z-index:70;backdrop-filter:blur(8px)}
     #toTop.show{opacity:1;pointer-events:auto}
-    #toTop:hover{background:var(--green-strong);transform:translateY(-3px)}
+    #toTop:hover{background:var(--blue-strong);transform:translateY(-3px)}
 
     /* reveal on scroll */
     .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s var(--ease);transition-delay:var(--d,0ms)}
     .reveal.in{opacity:1;transform:none}
+
+    /* ============ MOBILE-FIRST BREAKPOINTS ============ */
+    @media(max-width:920px){
+      .hero{grid-template-columns:1fr;gap:44px}
+    }
+    @media(max-width:860px){
+      .menu-btn{display:flex}
+      .nav-links{position:absolute;top:68px;left:0;right:0;flex-direction:column;align-items:stretch;gap:2px;
+        background:rgba(0,0,0,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);
+        padding:12px 20px calc(20px + env(safe-area-inset-bottom));opacity:0;transform:translateY(-10px);
+        pointer-events:none;transition:opacity .25s var(--ease),transform .25s var(--ease)}
+      .nav-links.open{opacity:1;transform:none;pointer-events:auto}
+      .nav-links a{padding:13px 12px;font-size:16px;min-height:46px;display:flex;align-items:center}
+      .nav-links a.active::after{left:12px;right:auto;width:22px;bottom:9px}
+      .nav-cta{margin:10px 0 0;justify-content:center}
+      .steps{grid-template-columns:1fr}
+      .mission{grid-template-columns:1fr}
+      .foot .cols{gap:40px}
+    }
+    @media(max-width:560px){
+      header{padding:56px 0 44px}
+      .cta .btn{flex:1 1 100%}
+      #chart{height:210px}
+      section{padding:68px 0}
+      .hero-meta{gap:12px}
+    }
     @media (prefers-reduced-motion: reduce){
       *,*::before,*::after{animation:none!important;transition:none!important}
       .reveal{opacity:1;transform:none}
@@ -194,14 +243,21 @@
 
   <nav id="nav">
     <div class="wrap nav-inner">
-      <div class="brand"><span class="logo">🚀</span> SINAL&nbsp;VEXA</div>
-      <div class="nav-links">
+      <a class="brand" href="#" style="text-decoration:none">
+        <img class="logo" src="assets/logo-128.png" alt="Sinal Vexa logo" width="38" height="38" />
+        SINAL&nbsp;VEXA
+      </a>
+      <div class="nav-links" id="navLinks">
         <a href="#how">How it works</a>
         <a href="#offer">What we offer</a>
         <a href="#mission">Mission</a>
         <a href="#risk">Risk</a>
-        <a class="btn btn-primary nav-cta" href="#" style="padding:10px 18px;font-size:14px">Join Telegram</a>
+        <!-- TODO: substitua href="#" pelo link oficial do Telegram, ex.: https://t.me/SEU_CANAL -->
+        <a class="btn btn-primary nav-cta" href="#" style="padding:10px 18px;font-size:14px;min-height:42px">Join Telegram</a>
       </div>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
@@ -209,19 +265,18 @@
     <div class="wrap hero">
       <div>
         <span class="eyebrow reveal"><span class="pulse"></span> Smart Forex Signals · Algorithmic Trading · Telegram</span>
-        <h1 class="reveal" style="--d:90ms">SINAL <span class="grad">VEXA</span> 🚀</h1>
+        <h1 class="reveal" style="--d:90ms">SINAL <span class="grad">VEXA</span></h1>
         <p class="tagline reveal" style="--d:180ms">
           A technology-driven project for the Forex market — combining trading algorithms,
-          market analysis, and automation to deliver <strong style="color:var(--text)">cost-effective trading signals</strong>.
+          market analysis, and automation to deliver <strong>cost-effective trading signals</strong>.
         </p>
         <div class="cta reveal" style="--d:260ms">
-          <!-- TODO: substitua href="#" pelo link oficial do Telegram, ex.: https://t.me/SEU_CANAL -->
           <a class="btn btn-primary" href="#" aria-label="Join our Telegram">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9.04 15.51 8.9 19.2c.36 0 .52-.16.71-.35l1.7-1.63 3.53 2.59c.65.36 1.11.17 1.29-.6l2.33-10.93c.21-.96-.35-1.34-.98-1.1L4.6 12.1c-.94.36-.93.89-.16 1.13l3.52 1.1 8.18-5.16c.39-.23.74-.1.45.16l-7.55 6.12z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.04 15.51 8.9 19.2c.36 0 .52-.16.71-.35l1.7-1.63 3.53 2.59c.65.36 1.11.17 1.29-.6l2.33-10.93c.21-.96-.35-1.34-.98-1.1L4.6 12.1c-.94.36-.93.89-.16 1.13l3.52 1.1 8.18-5.16c.39-.23.74-.1.45.16l-7.55 6.12z"/></svg>
             Join Telegram <span class="soon">(em breve)</span>
           </a>
           <a class="btn btn-ghost" href="https://github.com/sinalvexa" target="_blank" rel="noopener">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.26 5.66.41.36.78 1.06.78 2.14v3.17c0 .31.2.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.26 5.66.41.36.78 1.06.78 2.14v3.17c0 .31.2.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
             View on GitHub
           </a>
         </div>
@@ -233,7 +288,7 @@
       </div>
 
       <div class="reveal" style="--d:200ms">
-        <div class="chart-card" id="tilt">
+        <div class="chart-card">
           <div class="chart-head">
             <span class="chip"><span class="live"></span> Market illustration</span>
             <span class="chip">FX · Algo</span>
@@ -275,23 +330,23 @@
       <p class="lead reveal" style="--d:140ms">Everything below is designed to make trading technology more accessible — through intelligent, automated, and affordable solutions.</p>
       <div class="grid">
         <div class="card reveal" style="--d:120ms">
-          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 2 5-6"/></svg></div>
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 2 5-6"/></svg></div>
           <h3>Forex Signals</h3><p>Trading signals to support informed, disciplined trading decisions.</p>
         </div>
         <div class="card reveal" style="--d:180ms">
-          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
           <h3>Algorithmic Analysis</h3><p>Automated market analysis and rule-based trading strategies.</p>
         </div>
         <div class="card reveal" style="--d:240ms">
-          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></div>
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></div>
           <h3>Telegram Delivery</h3><p>Signals and real-time market updates delivered via Telegram.</p>
         </div>
         <div class="card reveal" style="--d:300ms">
-          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
           <h3>Cost-Effective</h3><p>Affordable solutions powered by technology and automation.</p>
         </div>
         <div class="card reveal" style="--d:360ms">
-          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.4 1 2.3h6c0-.9.4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg></div>
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.4 1 2.3h6c0-.9.4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg></div>
           <h3>Data-Driven Tools</h3><p>Continuous development of intelligent, data-driven trading tools.</p>
         </div>
       </div>
@@ -326,8 +381,11 @@
   <footer>
     <div class="wrap">
       <div class="foot">
-        <div style="max-width:320px">
-          <div class="brand"><span class="logo">🚀</span> SINAL&nbsp;VEXA</div>
+        <div style="max-width:340px">
+          <div class="brand">
+            <img class="logo" src="assets/logo-128.png" alt="" width="38" height="38" style="border-radius:50%" />
+            SINAL&nbsp;VEXA
+          </div>
           <p style="margin-top:14px;font-size:13.5px">Algorithmic Intelligence for the Forex Market. Signals and updates delivered via Telegram.</p>
         </div>
         <div class="cols">
@@ -353,18 +411,17 @@
   </footer>
 
   <button id="toTop" aria-label="Back to top">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
   </button>
 
   <script>
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.getElementById('yr').textContent = new Date().getFullYear();
 
-    // ---- ticker (pairs duplicated for a seamless loop) ----
+    // ---- ticker ----
     const pairs = ['EUR/USD','GBP/USD','USD/JPY','XAU/USD','GBP/JPY','AUD/USD','USD/CHF','EUR/JPY','NZD/USD','USD/CAD'];
-    const track = document.getElementById('tickerTrack');
-    const items = [...pairs, ...pairs].map(p => `<span class="tk"><i></i>${p}</span>`).join('');
-    track.innerHTML = items;
+    document.getElementById('tickerTrack').innerHTML =
+      [...pairs, ...pairs].map(p => `<span class="tk"><i></i>${p}</span>`).join('');
 
     // ---- scroll reveal ----
     const io = new IntersectionObserver(entries => {
@@ -379,6 +436,17 @@
       toTop.classList.toggle('show', scrollY > 480);
     }, { passive: true });
     toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }));
+
+    // ---- hamburger menu (mobile) ----
+    const menuBtn = document.getElementById('menuBtn'), navLinks = document.getElementById('navLinks');
+    function closeMenu() { menuBtn.classList.remove('open'); navLinks.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }
+    menuBtn.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuBtn.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
     const sections = [...document.querySelectorAll('section[id]')];
     const links = [...document.querySelectorAll('.nav-links a[href^="#"]:not(.nav-cta)')];
@@ -396,7 +464,7 @@
       });
     });
 
-    // ---- animated hero chart ----
+    // ---- animated hero chart (azul -> ciano) ----
     const cv = document.getElementById('chart'), ctx = cv.getContext('2d');
     let pts = [], W = 0, H = 0, start = null;
     function resize() {
@@ -422,24 +490,20 @@
     }
     function paint(t) {
       ctx.clearRect(0, 0, W, H);
-      // horizontal grid
-      ctx.strokeStyle = 'rgba(148,163,184,.09)'; ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255,255,255,.08)'; ctx.lineWidth = 1;
       for (let g = 1; g < 5; g++) { const yy = H * g / 5; ctx.beginPath(); ctx.moveTo(0, yy); ctx.lineTo(W, yy); ctx.stroke(); }
       const p = reduced ? 1 : Math.min(1, t / 1800);
       const upTo = Math.max(2, Math.floor(pts.length * p));
-      // area fill
       const grad = ctx.createLinearGradient(0, 0, 0, H);
-      grad.addColorStop(0, 'rgba(34,197,94,.28)'); grad.addColorStop(1, 'rgba(34,197,94,0)');
+      grad.addColorStop(0, 'rgba(10,108,255,.30)'); grad.addColorStop(1, 'rgba(10,108,255,0)');
       trace(upTo); ctx.lineTo(pts[upTo-1].x, H); ctx.lineTo(pts[0].x, H); ctx.closePath();
       ctx.fillStyle = grad; ctx.fill();
-      // line
       const lg = ctx.createLinearGradient(0, 0, W, 0);
-      lg.addColorStop(0, '#10b981'); lg.addColorStop(1, '#4ade80');
+      lg.addColorStop(0, '#0a6cff'); lg.addColorStop(1, '#33ccff');
       trace(upTo); ctx.strokeStyle = lg; ctx.lineWidth = 2.4 * (devicePixelRatio||1); ctx.lineJoin = 'round'; ctx.stroke();
-      // glowing endpoint
       const lp = pts[upTo-1], pulse = reduced ? 0 : Math.sin(t / 300) * 2;
       ctx.beginPath(); ctx.arc(lp.x, lp.y, (5 + pulse) * (devicePixelRatio||1), 0, 7);
-      ctx.fillStyle = 'rgba(74,222,128,.95)'; ctx.shadowColor = '#4ade80'; ctx.shadowBlur = 14; ctx.fill(); ctx.shadowBlur = 0;
+      ctx.fillStyle = 'rgba(51,204,255,.95)'; ctx.shadowColor = '#33ccff'; ctx.shadowBlur = 14; ctx.fill(); ctx.shadowBlur = 0;
     }
     function loop(ts) { if (!start) start = ts; paint(ts - start); if (!reduced) requestAnimationFrame(loop); }
     resize(); requestAnimationFrame(loop);
