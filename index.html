@@ -4,15 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#000000" />
-  <title>Sinal Vexa — Smart Forex Signals & Algorithmic Trading</title>
-  <meta name="description" content="Sinal Vexa combines trading algorithms, market analysis, and automation to deliver cost-effective Forex signals via Telegram." />
+  <title id="pageTitle">Sinal Vexa — Smart Forex Signals & Algorithmic Trading</title>
+  <meta id="metaDesc" name="description" content="Sinal Vexa combines trading algorithms, market analysis, and automation to deliver cost-effective Forex signals via Telegram." />
   <meta property="og:title" content="Sinal Vexa — Smart Forex Signals" />
   <meta property="og:description" content="Algorithmic Intelligence for the Forex Market. Signals and updates delivered via Telegram." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sinalvexa.github.io/" />
   <meta property="og:image" content="https://sinalvexa.github.io/assets/logo-512.png" />
-  <meta property="og:image:width" content="512" />
-  <meta property="og:image:height" content="512" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:image" content="https://sinalvexa.github.io/assets/logo-512.png" />
   <link rel="icon" type="image/png" sizes="64x64" href="assets/logo-64.png" />
@@ -21,13 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    /* ============================================================
-       PALETA OFICIAL — 60/25/10/5
-       60% preto  : fundos e interface      (--bg, --surface, --card)
-       25% azul   : logo, botões, elementos (--blue, --blue-2, --blue-strong)
-       10% ciano  : brilhos, gradientes     (--cyan, --cyan-2)
-        5% branco : textos e legibilidade   (--text, --muted, --line)
-       ============================================================ */
+    /* PALETA OFICIAL — 60% preto / 25% azul elétrico / 10% ciano / 5% branco */
     :root{
       --bg:#000000; --bg-2:#02050b; --surface:#050a13; --card:#070d18;
       --line:rgba(255,255,255,.10);
@@ -39,12 +31,10 @@
     }
     *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
     html{scroll-behavior:smooth}
-    body{
-      background:var(--bg); color:var(--text); line-height:1.6;
+    body{background:var(--bg);color:var(--text);line-height:1.6;
       font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-      -webkit-font-smoothing:antialiased; overflow-x:hidden; overflow-x:clip;
-    }
-    h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;letter-spacing:-.5px}
+      -webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip}
+    h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.5px}
     .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
     img,svg{display:block}
     a{color:inherit}
@@ -52,20 +42,17 @@
     :focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
     section{scroll-margin-top:86px}
 
-    /* ambient background (preto + brilhos azul/ciano) */
     .bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
     .bg .grid{position:absolute;inset:0;opacity:.45;
       background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
       background-size:56px 56px;
       mask-image:radial-gradient(900px 500px at 50% 0%,#000 30%,transparent 80%);
-      -webkit-mask-image:radial-gradient(900px 500px at 50% 0%,#000 30%,transparent 80%);
-    }
+      -webkit-mask-image:radial-gradient(900px 500px at 50% 0%,#000 30%,transparent 80%)}
     .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;animation:drift 18s ease-in-out infinite alternate}
     .orb.a{width:520px;height:520px;top:-180px;left:-120px;background:radial-gradient(circle,rgba(10,108,255,.26),transparent 70%)}
     .orb.b{width:460px;height:460px;top:120px;right:-140px;background:radial-gradient(circle,rgba(51,204,255,.14),transparent 70%);animation-delay:-6s}
     @keyframes drift{from{transform:translate(0,0)}to{transform:translate(40px,30px)}}
 
-    /* Nav */
     nav{position:sticky;top:0;z-index:60;transition:background .3s,box-shadow .3s,border-color .3s;border-bottom:1px solid transparent}
     nav.scrolled{background:rgba(0,0,0,.82);backdrop-filter:saturate(150%) blur(12px);
       border-bottom:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.5)}
@@ -79,7 +66,12 @@
     .nav-links a.active::after{content:'';position:absolute;left:13px;right:13px;bottom:3px;height:2px;border-radius:2px;background:var(--cyan)}
     .nav-cta{margin-left:8px}
 
-    /* hambúrguer (mobile) */
+    /* seletor de idioma */
+    .lang{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;margin-left:10px}
+    .lang button{background:none;border:0;color:var(--muted);font:600 12px 'Space Grotesk';padding:8px 11px;cursor:pointer;transition:background .2s,color .2s}
+    .lang button.on{background:var(--blue);color:#fff}
+    .lang button:not(.on):hover{color:var(--text)}
+
     .menu-btn{display:none;place-items:center;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);
       background:rgba(255,255,255,.03);cursor:pointer;flex-direction:column;gap:5px}
     .menu-btn span{display:block;width:20px;height:2px;border-radius:2px;background:var(--text);transition:transform .3s var(--ease),opacity .2s}
@@ -87,7 +79,6 @@
     .menu-btn.open span:nth-child(2){opacity:0}
     .menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-    /* Buttons (25% azul elétrico + brilho ciano) */
     .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:13px;
       font-weight:600;text-decoration:none;font-size:15px;overflow:hidden;transition:transform .18s var(--ease),box-shadow .18s,background .2s;min-height:48px}
     .btn:active{transform:translateY(1px) scale(.99)}
@@ -100,7 +91,6 @@
     .btn-ghost:hover{background:rgba(10,108,255,.10);border-color:rgba(10,108,255,.45);transform:translateY(-2px)}
     .soon{font-size:11px;opacity:.75;font-weight:500}
 
-    /* Hero */
     header{position:relative;padding:72px 0 56px}
     .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
     .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:13px;color:var(--cyan-2);
@@ -117,7 +107,6 @@
     .hero-meta span{display:inline-flex;align-items:center;gap:7px}
     .hero-meta .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan)}
 
-    /* chart card */
     .chart-card{position:relative;border:1px solid var(--line);border-radius:22px;background:linear-gradient(160deg,rgba(7,13,24,.92),rgba(2,5,11,.75));
       padding:20px;box-shadow:0 30px 60px rgba(0,0,0,.55)}
     .chart-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:10px;flex-wrap:wrap}
@@ -127,7 +116,6 @@
     #chart{width:100%;height:250px;border-radius:14px}
     .chart-note{margin-top:10px;font-size:11px;color:var(--muted);opacity:.7;text-align:right}
 
-    /* ticker */
     .ticker{border-block:1px solid var(--line);background:rgba(255,255,255,.015);overflow:hidden;position:relative}
     .ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:90px;z-index:2;pointer-events:none}
     .ticker::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
@@ -138,14 +126,12 @@
     @keyframes tick{to{transform:translateX(-50%)}}
     .ticker:hover .ticker-track{animation-play-state:paused}
 
-    /* sections */
     section{padding:88px 0;position:relative}
     .kicker{color:var(--cyan);font-weight:600;font-size:12px;letter-spacing:2.4px;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px}
     .kicker::before{content:'';width:26px;height:2px;background:var(--blue);border-radius:2px}
     h2{font-size:clamp(28px,4vw,42px);margin:12px 0 14px;font-weight:700}
     .lead{color:var(--muted);max-width:720px;font-size:16px}
 
-    /* how it works */
     .steps{margin-top:52px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .step{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:transform .25s var(--ease),border-color .25s}
     .step:hover{transform:translateY(-5px);border-color:rgba(10,108,255,.5)}
@@ -154,7 +140,6 @@
     .step p{color:var(--muted);font-size:14px}
     .step .bar{position:absolute;top:0;left:28px;width:44px;height:3px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,var(--blue),transparent)}
 
-    /* features */
     .grid{margin-top:52px;display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:18px}
     .card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;overflow:hidden;
       transition:transform .28s var(--ease),border-color .28s,box-shadow .28s}
@@ -168,7 +153,6 @@
     .card h3{font-size:16px;margin-bottom:6px}
     .card p{color:var(--muted);font-size:14px}
 
-    /* mission */
     .mission{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
     .panel{position:relative;border:1px solid rgba(10,108,255,.35);border-radius:20px;padding:34px;overflow:hidden;
       background:linear-gradient(150deg,#031028,#050a13 60%)}
@@ -177,12 +161,10 @@
     .panel p{color:rgba(255,255,255,.85);font-size:16px}
     .panel strong{color:var(--cyan-2)}
 
-    /* disclaimer (mantido em-paleta: branco + ciano) */
     .disclaimer{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.18);border-left:4px solid var(--cyan);
       border-radius:14px;padding:22px 24px;color:rgba(255,255,255,.85);font-size:14.5px;margin-top:28px}
     .disclaimer b{color:var(--text)}
 
-    /* footer */
     footer{padding:56px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;background:rgba(255,255,255,.01)}
     .foot{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;flex-wrap:wrap}
     .foot .brand{color:var(--text)}
@@ -192,21 +174,16 @@
     .foot a:hover{color:var(--cyan-2)}
     .fine{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:rgba(255,255,255,.42);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
-    /* back to top */
     #toTop{position:fixed;right:max(22px, env(safe-area-inset-right));bottom:max(22px, env(safe-area-inset-bottom));width:46px;height:46px;border-radius:50%;
       border:1px solid var(--line);background:rgba(5,10,19,.9);color:var(--text);display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;
       transition:opacity .3s,transform .3s,background .2s;z-index:70;backdrop-filter:blur(8px)}
     #toTop.show{opacity:1;pointer-events:auto}
     #toTop:hover{background:var(--blue-strong);transform:translateY(-3px)}
 
-    /* reveal on scroll */
     .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s var(--ease);transition-delay:var(--d,0ms)}
     .reveal.in{opacity:1;transform:none}
 
-    /* ============ MOBILE-FIRST BREAKPOINTS ============ */
-    @media(max-width:920px){
-      .hero{grid-template-columns:1fr;gap:44px}
-    }
+    @media(max-width:920px){.hero{grid-template-columns:1fr;gap:44px}}
     @media(max-width:860px){
       .menu-btn{display:flex}
       .nav-links{position:absolute;top:68px;left:0;right:0;flex-direction:column;align-items:stretch;gap:2px;
@@ -217,6 +194,7 @@
       .nav-links a{padding:13px 12px;font-size:16px;min-height:46px;display:flex;align-items:center}
       .nav-links a.active::after{left:12px;right:auto;width:22px;bottom:9px}
       .nav-cta{margin:10px 0 0;justify-content:center}
+      .lang{margin:12px 0 0;align-self:flex-start}
       .steps{grid-template-columns:1fr}
       .mission{grid-template-columns:1fr}
       .foot .cols{gap:40px}
@@ -236,10 +214,7 @@
   </style>
 </head>
 <body>
-  <div class="bg" aria-hidden="true">
-    <div class="grid"></div>
-    <div class="orb a"></div><div class="orb b"></div>
-  </div>
+  <div class="bg" aria-hidden="true"><div class="grid"></div><div class="orb a"></div><div class="orb b"></div></div>
 
   <nav id="nav">
     <div class="wrap nav-inner">
@@ -248,12 +223,16 @@
         SINAL&nbsp;VEXA
       </a>
       <div class="nav-links" id="navLinks">
-        <a href="#how">How it works</a>
-        <a href="#offer">What we offer</a>
-        <a href="#mission">Mission</a>
-        <a href="#risk">Risk</a>
+        <a href="#how" data-i18n="nav.how">How it works</a>
+        <a href="#offer" data-i18n="nav.offer">What we offer</a>
+        <a href="#mission" data-i18n="nav.mission">Mission</a>
+        <a href="#risk" data-i18n="nav.risk">Risk</a>
         <!-- TODO: substitua href="#" pelo link oficial do Telegram, ex.: https://t.me/SEU_CANAL -->
-        <a class="btn btn-primary nav-cta" href="#" style="padding:10px 18px;font-size:14px;min-height:42px">Join Telegram</a>
+        <a class="btn btn-primary nav-cta" href="#" style="padding:10px 18px;font-size:14px;min-height:42px"><span data-i18n="nav.cta">Join Telegram</span></a>
+        <div class="lang" role="group" aria-label="Language">
+          <button id="langEn" type="button">EN</button>
+          <button id="langPt" type="button">PT</button>
+        </div>
       </div>
       <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
@@ -264,60 +243,58 @@
   <header>
     <div class="wrap hero">
       <div>
-        <span class="eyebrow reveal"><span class="pulse"></span> Smart Forex Signals · Algorithmic Trading · Telegram</span>
+        <span class="eyebrow reveal"><span class="pulse"></span> <span data-i18n="hero.eyebrow">Smart Forex Signals · Algorithmic Trading · Telegram</span></span>
         <h1 class="reveal" style="--d:90ms">SINAL <span class="grad">VEXA</span></h1>
-        <p class="tagline reveal" style="--d:180ms">
+        <p class="tagline reveal" style="--d:180ms" data-i18n-html="hero.tagline">
           A technology-driven project for the Forex market — combining trading algorithms,
           market analysis, and automation to deliver <strong>cost-effective trading signals</strong>.
         </p>
         <div class="cta reveal" style="--d:260ms">
-          <a class="btn btn-primary" href="#" aria-label="Join our Telegram">
+          <a class="btn btn-primary" href="#" aria-label="Telegram">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.04 15.51 8.9 19.2c.36 0 .52-.16.71-.35l1.7-1.63 3.53 2.59c.65.36 1.11.17 1.29-.6l2.33-10.93c.21-.96-.35-1.34-.98-1.1L4.6 12.1c-.94.36-.93.89-.16 1.13l3.52 1.1 8.18-5.16c.39-.23.74-.1.45.16l-7.55 6.12z"/></svg>
-            Join Telegram <span class="soon">(em breve)</span>
+            <span data-i18n="hero.ctaTg">Join Telegram</span> <span class="soon" data-i18n="hero.soon">(coming soon)</span>
           </a>
           <a class="btn btn-ghost" href="https://github.com/sinalvexa" target="_blank" rel="noopener">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.06 11.06 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.26 5.66.41.36.78 1.06.78 2.14v3.17c0 .31.2.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-            View on GitHub
+            <span data-i18n="hero.ctaGh">View on GitHub</span>
           </a>
         </div>
         <div class="hero-meta reveal" style="--d:340ms">
-          <span><i class="dot"></i> Real-time delivery</span>
-          <span><i class="dot"></i> Multi-pair coverage</span>
-          <span><i class="dot"></i> Data-driven</span>
+          <span><i class="dot"></i> <span data-i18n="hero.m1">Real-time delivery</span></span>
+          <span><i class="dot"></i> <span data-i18n="hero.m2">Multi-pair coverage</span></span>
+          <span><i class="dot"></i> <span data-i18n="hero.m3">Data-driven</span></span>
         </div>
       </div>
 
       <div class="reveal" style="--d:200ms">
         <div class="chart-card">
           <div class="chart-head">
-            <span class="chip"><span class="live"></span> Market illustration</span>
+            <span class="chip"><span class="live"></span> <span data-i18n="chart.live">Market illustration</span></span>
             <span class="chip">FX · Algo</span>
           </div>
           <canvas id="chart" aria-hidden="true"></canvas>
-          <div class="chart-note">Decorative visualization — not live market data.</div>
+          <div class="chart-note" data-i18n="chart.note">Decorative visualization — not live market data.</div>
         </div>
       </div>
     </div>
   </header>
 
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track" id="tickerTrack"></div>
-  </div>
+  <div class="ticker" aria-hidden="true"><div class="ticker-track" id="tickerTrack"></div></div>
 
   <section id="how">
     <div class="wrap">
-      <span class="kicker reveal">How it works</span>
-      <h2 class="reveal" style="--d:80ms">From data to decision, in three steps</h2>
-      <p class="lead reveal" style="--d:140ms">A clear, automated pipeline — so you receive structured signals, not noise.</p>
+      <span class="kicker reveal" data-i18n="how.kicker">How it works</span>
+      <h2 class="reveal" style="--d:80ms" data-i18n="how.h2">From data to decision, in three steps</h2>
+      <p class="lead reveal" style="--d:140ms" data-i18n="how.lead">A clear, automated pipeline — so you receive structured signals, not noise.</p>
       <div class="steps">
         <div class="step reveal" style="--d:120ms"><span class="bar"></span><span class="num">01</span>
-          <h3>Analyze</h3><p>Algorithms scan the market with data-driven technical analysis to identify structured opportunities.</p>
+          <h3 data-i18n="s1.t">Analyze</h3><p data-i18n="s1.p">Algorithms scan the market with data-driven technical analysis to identify structured opportunities.</p>
         </div>
         <div class="step reveal" style="--d:200ms"><span class="bar"></span><span class="num">02</span>
-          <h3>Signal</h3><p>Clear, actionable signals are generated and delivered in real time through Telegram.</p>
+          <h3 data-i18n="s2.t">Signal</h3><p data-i18n="s2.p">Clear, actionable signals are generated and delivered in real time through Telegram.</p>
         </div>
         <div class="step reveal" style="--d:280ms"><span class="bar"></span><span class="num">03</span>
-          <h3>Decide</h3><p>You stay in control — using information and discipline to make your own trading decisions.</p>
+          <h3 data-i18n="s3.t">Decide</h3><p data-i18n="s3.p">You stay in control — using information and discipline to make your own trading decisions.</p>
         </div>
       </div>
     </div>
@@ -325,29 +302,29 @@
 
   <section id="offer" style="background:rgba(255,255,255,.012)">
     <div class="wrap">
-      <span class="kicker reveal">What we offer</span>
-      <h2 class="reveal" style="--d:80ms">Built for informed, data-driven trading</h2>
-      <p class="lead reveal" style="--d:140ms">Everything below is designed to make trading technology more accessible — through intelligent, automated, and affordable solutions.</p>
+      <span class="kicker reveal" data-i18n="offer.kicker">What we offer</span>
+      <h2 class="reveal" style="--d:80ms" data-i18n="offer.h2">Built for informed, data-driven trading</h2>
+      <p class="lead reveal" style="--d:140ms" data-i18n="offer.lead">Everything below is designed to make trading technology more accessible — through intelligent, automated, and affordable solutions.</p>
       <div class="grid">
         <div class="card reveal" style="--d:120ms">
           <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 2 5-6"/></svg></div>
-          <h3>Forex Signals</h3><p>Trading signals to support informed, disciplined trading decisions.</p>
+          <h3 data-i18n="c1.t">Forex Signals</h3><p data-i18n="c1.p">Trading signals to support informed, disciplined trading decisions.</p>
         </div>
         <div class="card reveal" style="--d:180ms">
           <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
-          <h3>Algorithmic Analysis</h3><p>Automated market analysis and rule-based trading strategies.</p>
+          <h3 data-i18n="c2.t">Algorithmic Analysis</h3><p data-i18n="c2.p">Automated market analysis and rule-based trading strategies.</p>
         </div>
         <div class="card reveal" style="--d:240ms">
           <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></div>
-          <h3>Telegram Delivery</h3><p>Signals and real-time market updates delivered via Telegram.</p>
+          <h3 data-i18n="c3.t">Telegram Delivery</h3><p data-i18n="c3.p">Signals and real-time market updates delivered via Telegram.</p>
         </div>
         <div class="card reveal" style="--d:300ms">
           <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
-          <h3>Cost-Effective</h3><p>Affordable solutions powered by technology and automation.</p>
+          <h3 data-i18n="c4.t">Cost-Effective</h3><p data-i18n="c4.p">Affordable solutions powered by technology and automation.</p>
         </div>
         <div class="card reveal" style="--d:360ms">
           <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.4 1 2.3h6c0-.9.4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg></div>
-          <h3>Data-Driven Tools</h3><p>Continuous development of intelligent, data-driven trading tools.</p>
+          <h3 data-i18n="c5.t">Data-Driven Tools</h3><p data-i18n="c5.p">Continuous development of intelligent, data-driven trading tools.</p>
         </div>
       </div>
     </div>
@@ -356,21 +333,21 @@
   <section id="mission">
     <div class="wrap mission">
       <div>
-        <span class="kicker reveal">Our mission</span>
-        <h2 class="reveal" style="--d:80ms">Algorithmic intelligence for the Forex market</h2>
-        <p class="lead reveal" style="--d:140ms">Make trading technology more accessible through intelligent solutions, data-driven analysis, and real-time communication via Telegram.</p>
+        <span class="kicker reveal" data-i18n="mission.kicker">Our mission</span>
+        <h2 class="reveal" style="--d:80ms" data-i18n="mission.h2">Algorithmic intelligence for the Forex market</h2>
+        <p class="lead reveal" style="--d:140ms" data-i18n="mission.lead">Make trading technology more accessible through intelligent solutions, data-driven analysis, and real-time communication via Telegram.</p>
       </div>
       <div class="panel reveal" style="--d:200ms">
-        <p>🎯 We combine <strong>algorithms</strong>, <strong>market analysis</strong>, and <strong>automation</strong> to deliver cost-effective signals — so you can focus on decisions, not noise.</p>
+        <p data-i18n-html="mission.panel">🎯 We combine <strong>algorithms</strong>, <strong>market analysis</strong>, and <strong>automation</strong> to deliver cost-effective signals — so you can focus on decisions, not noise.</p>
       </div>
     </div>
   </section>
 
   <section id="risk" style="background:rgba(255,255,255,.012)">
     <div class="wrap">
-      <span class="kicker reveal">Transparency</span>
-      <h2 class="reveal" style="--d:80ms">Risk disclaimer</h2>
-      <div class="disclaimer reveal" style="--d:140ms">
+      <span class="kicker reveal" data-i18n="risk.kicker">Transparency</span>
+      <h2 class="reveal" style="--d:80ms" data-i18n="risk.h2">Risk disclaimer</h2>
+      <div class="disclaimer reveal" style="--d:140ms" data-i18n-html="risk.disc">
         <b>⚠️ Important:</b> Forex trading involves <b>significant financial risk</b>.
         Trading signals do <b>not</b> guarantee profits, and past performance does
         <b>not</b> guarantee future results. Trade responsibly and only with capital you can afford to lose.
@@ -386,26 +363,26 @@
             <img class="logo" src="assets/logo-128.png" alt="" width="38" height="38" style="border-radius:50%" />
             SINAL&nbsp;VEXA
           </div>
-          <p style="margin-top:14px;font-size:13.5px">Algorithmic Intelligence for the Forex Market. Signals and updates delivered via Telegram.</p>
+          <p style="margin-top:14px;font-size:13.5px" data-i18n="footer.tag">Algorithmic Intelligence for the Forex Market. Signals and updates delivered via Telegram.</p>
         </div>
         <div class="cols">
           <div>
-            <h4>Explore</h4>
-            <a href="#how">How it works</a>
-            <a href="#offer">What we offer</a>
-            <a href="#mission">Mission</a>
+            <h4 data-i18n="footer.explore">Explore</h4>
+            <a href="#how" data-i18n="nav.how">How it works</a>
+            <a href="#offer" data-i18n="nav.offer">What we offer</a>
+            <a href="#mission" data-i18n="nav.mission">Mission</a>
           </div>
           <div>
-            <h4>Connect</h4>
+            <h4 data-i18n="footer.connect">Connect</h4>
             <a href="https://github.com/sinalvexa" target="_blank" rel="noopener">GitHub</a>
             <a href="#">Telegram</a>
-            <a href="#risk">Risk disclaimer</a>
+            <a href="#risk" data-i18n="footer.risklink">Risk disclaimer</a>
           </div>
         </div>
       </div>
       <div class="fine">
-        <span>© <span id="yr"></span> Sinal Vexa. All rights reserved.</span>
-        <span>Trading involves risk. Signals are informational, not financial advice.</span>
+        <span data-i18n-html="fine.1">© <span id="yr"></span> Sinal Vexa. All rights reserved.</span>
+        <span data-i18n="fine.2">Trading involves risk. Signals are informational, not financial advice.</span>
       </div>
     </div>
   </footer>
@@ -415,8 +392,114 @@
   </button>
 
   <script>
+    /* ================= i18n (EN / PT-BR) ================= */
+    const STR = {
+      en: {
+        'nav.how':'How it works','nav.offer':'What we offer','nav.mission':'Mission','nav.risk':'Risk','nav.cta':'Join Telegram',
+        'hero.eyebrow':'Smart Forex Signals · Algorithmic Trading · Telegram',
+        'hero.tagline':'A technology-driven project for the Forex market — combining trading algorithms, market analysis, and automation to deliver <strong>cost-effective trading signals</strong>.',
+        'hero.ctaTg':'Join Telegram','hero.soon':'(coming soon)','hero.ctaGh':'View on GitHub',
+        'hero.m1':'Real-time delivery','hero.m2':'Multi-pair coverage','hero.m3':'Data-driven',
+        'chart.live':'Market illustration','chart.note':'Decorative visualization — not live market data.',
+        'how.kicker':'How it works','how.h2':'From data to decision, in three steps',
+        'how.lead':'A clear, automated pipeline — so you receive structured signals, not noise.',
+        's1.t':'Analyze','s1.p':'Algorithms scan the market with data-driven technical analysis to identify structured opportunities.',
+        's2.t':'Signal','s2.p':'Clear, actionable signals are generated and delivered in real time through Telegram.',
+        's3.t':'Decide','s3.p':'You stay in control — using information and discipline to make your own trading decisions.',
+        'offer.kicker':'What we offer','offer.h2':'Built for informed, data-driven trading',
+        'offer.lead':'Everything below is designed to make trading technology more accessible — through intelligent, automated, and affordable solutions.',
+        'c1.t':'Forex Signals','c1.p':'Trading signals to support informed, disciplined trading decisions.',
+        'c2.t':'Algorithmic Analysis','c2.p':'Automated market analysis and rule-based trading strategies.',
+        'c3.t':'Telegram Delivery','c3.p':'Signals and real-time market updates delivered via Telegram.',
+        'c4.t':'Cost-Effective','c4.p':'Affordable solutions powered by technology and automation.',
+        'c5.t':'Data-Driven Tools','c5.p':'Continuous development of intelligent, data-driven trading tools.',
+        'mission.kicker':'Our mission','mission.h2':'Algorithmic intelligence for the Forex market',
+        'mission.lead':'Make trading technology more accessible through intelligent solutions, data-driven analysis, and real-time communication via Telegram.',
+        'mission.panel':'🎯 We combine <strong>algorithms</strong>, <strong>market analysis</strong>, and <strong>automation</strong> to deliver cost-effective signals — so you can focus on decisions, not noise.',
+        'risk.kicker':'Transparency','risk.h2':'Risk disclaimer',
+        'risk.disc':'<b>⚠️ Important:</b> Forex trading involves <b>significant financial risk</b>. Trading signals do <b>not</b> guarantee profits, and past performance does <b>not</b> guarantee future results. Trade responsibly and only with capital you can afford to lose.',
+        'footer.tag':'Algorithmic Intelligence for the Forex Market. Signals and updates delivered via Telegram.',
+        'footer.explore':'Explore','footer.connect':'Connect','footer.risklink':'Risk disclaimer',
+        'fine.1':'© <span id="yr"></span> Sinal Vexa. All rights reserved.',
+        'fine.2':'Trading involves risk. Signals are informational, not financial advice.',
+        'meta.title':'Sinal Vexa — Smart Forex Signals & Algorithmic Trading',
+        'meta.desc':'Sinal Vexa combines trading algorithms, market analysis, and automation to deliver cost-effective Forex signals via Telegram.',
+        'a11y.top':'Back to top'
+      },
+      pt: {
+        'nav.how':'Como funciona','nav.offer':'O que oferecemos','nav.mission':'Missão','nav.risk':'Riscos','nav.cta':'Entrar no Telegram',
+        'hero.eyebrow':'Sinais Forex Inteligentes · Trading Algorítmico · Telegram',
+        'hero.tagline':'Um projeto guiado por tecnologia para o mercado Forex — combinando algoritmos de trading, análise de mercado e automação para entregar <strong>sinais com ótimo custo-benefício</strong>.',
+        'hero.ctaTg':'Entrar no Telegram','hero.soon':'(em breve)','hero.ctaGh':'Ver no GitHub',
+        'hero.m1':'Entrega em tempo real','hero.m2':'Cobertura multipar','hero.m3':'Guiado por dados',
+        'chart.live':'Ilustração de mercado','chart.note':'Visualização decorativa — não são dados reais de mercado.',
+        'how.kicker':'Como funciona','how.h2':'Do dado à decisão, em três passos',
+        'how.lead':'Um pipeline claro e automatizado — você recebe sinais estruturados, não ruído.',
+        's1.t':'Analisar','s1.p':'Algoritmos varrem o mercado com análise técnica guiada por dados para identificar oportunidades estruturadas.',
+        's2.t':'Sinal','s2.p':'Sinais claros e acionáveis são gerados e entregues em tempo real pelo Telegram.',
+        's3.t':'Decidir','s3.p':'Você mantém o controle — usando informação e disciplina para tomar suas próprias decisões.',
+        'offer.kicker':'O que oferecemos','offer.h2':'Feito para trading informado e guiado por dados',
+        'offer.lead':'Tudo abaixo foi desenhado para tornar a tecnologia de trading mais acessível — com soluções inteligentes, automatizadas e acessíveis.',
+        'c1.t':'Sinais de Forex','c1.p':'Sinais de trading para apoiar decisões informadas e disciplinadas.',
+        'c2.t':'Análise Algorítmica','c2.p':'Análise de mercado automatizada e estratégias baseadas em regras.',
+        'c3.t':'Entrega no Telegram','c3.p':'Sinais e atualizações de mercado em tempo real pelo Telegram.',
+        'c4.t':'Custo-benefício','c4.p':'Soluções acessíveis impulsionadas por tecnologia e automação.',
+        'c5.t':'Ferramentas data-driven','c5.p':'Desenvolvimento contínuo de ferramentas inteligentes guiadas por dados.',
+        'mission.kicker':'Nossa missão','mission.h2':'Inteligência algorítmica para o mercado Forex',
+        'mission.lead':'Tornar a tecnologia de trading mais acessível por meio de soluções inteligentes, análise guiada por dados e comunicação em tempo real pelo Telegram.',
+        'mission.panel':'🎯 Combinamos <strong>algoritmos</strong>, <strong>análise de mercado</strong> e <strong>automação</strong> para entregar sinais com ótimo custo-benefício — para você focar nas decisões, não no ruído.',
+        'risk.kicker':'Transparência','risk.h2':'Aviso de risco',
+        'risk.disc':'<b>⚠️ Importante:</b> o trading de Forex envolve <b>risco financeiro significativo</b>. Sinais de trading <b>não</b> garantem lucros, e desempenho passado <b>não</b> garante resultados futuros. Opere com responsabilidade e apenas com capital que você pode perder.',
+        'footer.tag':'Inteligência Algorítmica para o Mercado Forex. Sinais e atualizações pelo Telegram.',
+        'footer.explore':'Explorar','footer.connect':'Conectar','footer.risklink':'Aviso de risco',
+        'fine.1':'© <span id="yr"></span> Sinal Vexa. Todos os direitos reservados.',
+        'fine.2':'Trading envolve risco. Sinais são informativos, não são recomendação financeira.',
+        'meta.title':'Sinal Vexa — Sinais Forex Inteligentes e Trading Algorítmico',
+        'meta.desc':'O Sinal Vexa combina algoritmos de trading, análise de mercado e automação para entregar sinais Forex com ótimo custo-benefício via Telegram.',
+        'a11y.top':'Voltar ao topo'
+      }
+    };
+    const PT_COUNTRIES = new Set(['BR','PT','AO','MZ','CV','TL','GW','ST','MO']);
+
+    function applyLang(lang) {
+      const t = STR[lang] || STR.en;
+      document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+      document.getElementById('pageTitle').textContent = t['meta.title'];
+      document.getElementById('metaDesc').setAttribute('content', t['meta.desc']);
+      document.getElementById('toTop').setAttribute('aria-label', t['a11y.top']);
+      document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t[el.dataset.i18n] ?? el.textContent; });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => { el.innerHTML = t[el.dataset.i18nHtml] ?? el.innerHTML; });
+      const yr = document.getElementById('yr');
+      if (yr) yr.textContent = new Date().getFullYear();
+      document.getElementById('langEn').classList.toggle('on', lang !== 'pt');
+      document.getElementById('langPt').classList.toggle('on', lang === 'pt');
+    }
+    function setLang(lang, persist) {
+      applyLang(lang);
+      if (persist) localStorage.setItem('sv_lang', lang);
+      if (window.gtag) gtag('event', 'language', { lang });
+    }
+
+    // Prioridade: ?lang= > escolha salva > idioma do navegador > IP (países lusófonos)
+    (function initLang() {
+      const q = new URLSearchParams(location.search).get('lang');
+      const saved = localStorage.getItem('sv_lang');
+      const browser = (navigator.language || '').toLowerCase().startsWith('pt') ? 'pt' : 'en';
+      const initial = q === 'pt' || q === 'en' ? q : (saved === 'pt' || saved === 'en' ? saved : browser);
+      applyLang(initial);
+      if (initial === 'en' && !q && !saved) {
+        const ctl = new AbortController(); const to = setTimeout(() => ctl.abort(), 1500);
+        fetch('https://ipapi.co/json/', { signal: ctl.signal })
+          .then(r => r.ok ? r.json() : Promise.reject())
+          .then(d => { if (PT_COUNTRIES.has(d.country_code)) setLang('pt', false); })
+          .catch(() => {})
+          .finally(() => clearTimeout(to));
+      }
+    })();
+    document.getElementById('langEn').addEventListener('click', () => setLang('en', true));
+    document.getElementById('langPt').addEventListener('click', () => setLang('pt', true));
+
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    document.getElementById('yr').textContent = new Date().getFullYear();
 
     // ---- ticker ----
     const pairs = ['EUR/USD','GBP/USD','USD/JPY','XAU/USD','GBP/JPY','AUD/USD','USD/CHF','EUR/JPY','NZD/USD','USD/CAD'];
@@ -429,7 +512,7 @@
     }, { threshold: .12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    // ---- nav state + back-to-top + active link ----
+    // ---- nav / toTop ----
     const nav = document.getElementById('nav'), toTop = document.getElementById('toTop');
     addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', scrollY > 14);
@@ -437,7 +520,7 @@
     }, { passive: true });
     toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }));
 
-    // ---- hamburger menu (mobile) ----
+    // ---- hamburger ----
     const menuBtn = document.getElementById('menuBtn'), navLinks = document.getElementById('navLinks');
     function closeMenu() { menuBtn.classList.remove('open'); navLinks.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }
     menuBtn.addEventListener('click', () => {
@@ -455,7 +538,7 @@
     }, { rootMargin: '-40% 0px -55% 0px' });
     sections.forEach(s => spy.observe(s));
 
-    // ---- card spotlight ----
+    // ---- spotlight ----
     document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();
@@ -464,7 +547,7 @@
       });
     });
 
-    // ---- animated hero chart (azul -> ciano) ----
+    // ---- chart ----
     const cv = document.getElementById('chart'), ctx = cv.getContext('2d');
     let pts = [], W = 0, H = 0, start = null;
     function resize() {
@@ -510,9 +593,7 @@
     addEventListener('resize', () => { resize(); if (reduced) paint(2000); });
   </script>
 
-  <!-- ============ Google Analytics 4 (lazy-load) ============
-       ID de mensuração público por natureza; nenhum segredo aqui.
-       Carrega no idle/primeira interação para não competir com o render. -->
+  <!-- GA4 (lazy-load) — ID público por natureza -->
   <script>
     (function () {
       const GA_ID = 'G-7EW3YDR1KH';
