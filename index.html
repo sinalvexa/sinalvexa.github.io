@@ -594,38 +594,8 @@
     addEventListener('resize', () => { resize(); if (reduced) paint(2000); });
   </script>
 
-  <!-- Cloudflare Web Analytics — token público por natureza -->
-  <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js'
-          data-cf-beacon='{"token": "f6e50312db73409896e3be698dfcb827"}'></script>
+  <!-- Analytics: GA4 + Cloudflare Web Analytics + DigitalPlat são injetados na borda
+       pelo Worker sinalvexa-edge-analytics (sem scripts no HTML). -->
 
-  <!-- DigitalPlat Analytics — ID público por natureza (como o G- do GA4) -->
-  <script defer src="https://analytics.digitalplat.org/static/analytics.js"
-          data-property="dpa_rAo7pn7psLULEf8Bta5mHZXsj5iaCdc"></script>
-
-  <!-- GA4 (lazy-load) — ID público por natureza -->
-  <script>
-    (function () {
-      const GA_ID = 'G-7EW3YDR1KH';
-      let loaded = false;
-      function loadGA() {
-        if (loaded) return;
-        loaded = true;
-        const s = document.createElement('script');
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-        s.async = true;
-        s.onload = function () {
-          window.dataLayer = window.dataLayer || [];
-          window.gtag = function () { dataLayer.push(arguments); };
-          gtag('js', new Date());
-          gtag('config', GA_ID);
-        };
-        document.head.appendChild(s);
-      }
-      if ('requestIdleCallback' in window) requestIdleCallback(loadGA, { timeout: 2500 });
-      else setTimeout(loadGA, 1500);
-      ['scroll', 'click', 'keydown', 'touchstart'].forEach(ev =>
-        addEventListener(ev, loadGA, { once: true, passive: true }));
-    })();
-  </script>
 </body>
 </html>
